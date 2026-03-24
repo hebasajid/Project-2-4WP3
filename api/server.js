@@ -47,6 +47,23 @@ app.post('/api', (req, res) => {
     });
 });
 
+//DELETE ROUTE: deletes ONE expense from the db route based on id: /api/:id
+
+app.delete('/api/:id', (req, res) => {
+    console.log("DELETE EXPENSE REQUEST RECEIVED");
+    const { id } = req.params; //getting the ID of the expense to be deleted from the request params
+    const sql = "DELETE FROM expenses WHERE id = ?";
+    db.run(sql, id, function (err) {  //executing delete request w specific ID
+        if (err) {
+            res.status(400).json({ "error": err.message });
+            return;
+        }
+        res.json({
+            status: `Record with id=${id} deleted successfully` //confirming deletion
+        });
+    });
+});
+
 //starting server at port 3000 
 app.listen(3000, () => {
     console.log("RESTful API listening on port 3000");
