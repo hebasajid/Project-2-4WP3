@@ -28,8 +28,23 @@ app.get('/api', (req, res) => {
     });
 });
 
+//2. GET ROUTE: gets ONE expense from the db route based on id: /api/:id
+app.get('/api/:id', (req, res) => {
+    console.log("GET EXPENSE BY ID REQUEST RECEIVED");
+    const { id } = req.params; //getting id of expense from req. params
+    const sql = "SELECT * FROM expenses WHERE id = ?"; //sql query
+    db.get(sql, [id], (err, row) => { //executing query with specific id
+        if (err) {
+            console.error(err.message);
+            res.status(500).json({ error: err.message });
+        } else {
+            res.json(row); //returning record as json reponse
+        }
+    });
+});
 
-//2. POST ROUTE: adds a new expense to the db route: /api
+
+//3. POST ROUTE: adds a new expense to the db route: /api
 app.post('/api', (req, res) => {
     console.log("POST EXPENSE REQUEST RECEIVED");
     const { Item_date, Item_amount, Item_name, Item_category } = req.body;  
@@ -45,7 +60,7 @@ app.post('/api', (req, res) => {
     });
 });
 
-//3. DELETE ROUTE: deletes ONE expense from the db route based on id: /api/:id
+//4. DELETE ROUTE: deletes ONE expense from the db route based on id: /api/:id
 
 app.delete('/api/:id', (req, res) => {
     console.log("DELETE EXPENSE REQUEST RECEIVED");
@@ -60,7 +75,7 @@ app.delete('/api/:id', (req, res) => {
     });
 });
 
-//DELETE ROUTE: deletes ALL expenses from the db route: /api
+//5. DELETE ROUTE: deletes ALL expenses from the db route: /api
 app.delete('/api', (req, res) => {
     console.log("DELETE ALL EXPENSES REQUEST RECEIVED");
     const sql = "DELETE FROM expenses";
