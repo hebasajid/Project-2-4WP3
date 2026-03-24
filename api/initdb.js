@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./database.sqlite');
+const db = new sqlite3.Database('./database.sqlite'); //creating a new database file named database.sqlite in the current directory
 
 db.serialize(() => {
   // Drop table if it exists
