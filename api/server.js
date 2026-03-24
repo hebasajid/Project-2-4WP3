@@ -41,9 +41,7 @@ app.post('/api', (req, res) => {
             res.status(400).json({ "error": err.message });
             return;
         }
-        res.json({
-            status: `New record created with $id=${this.lastID}` //ensuring response includes the ID of the newly created record for client reference
-        });
+       res.json({ status: "New record created with $id=" + this.lastID });
     });
 });
 
@@ -58,11 +56,11 @@ app.delete('/api/:id', (req, res) => {
             res.status(400).json({ "error": err.message });
             return;
         }
-        res.json({
-            status: `Record with id=${id} deleted successfully` //confirming deletion
-        });
+        res.json({ status: "Record id=" + id + " deleted" });
     });
 });
+
+
 
 //starting server at port 3000 
 app.listen(3000, () => {
