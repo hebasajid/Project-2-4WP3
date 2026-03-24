@@ -84,13 +84,29 @@ app.delete('/api', (req, res) => {
             res.status(400).json({ "error": err.message });
             return;
         }
-        res.json({ status: "All records deleted" });
+        res.json({ status: "Collection deleted" });
     });
 });
+
+
+//6. PUT ROUTE: updates an existing expense in the db route based on id: /api/:id
+app.put('/api/:id', (req, res) => {
+    const { id } = req.params;
+    const { Item_date, Item_amount, Item_name, Item_category } = req.body; //getting all fields of expense to update them
+    const sql = `UPDATE expenses SET Item_date = ?, Item_amount = ?, Item_name = ?, Item_category = ? WHERE id = ?`; //using sql statement
+    const params = [Item_date, Item_amount, Item_name, Item_category, id]; //
+
+    db.run(sql, params, function (err) { //running update request w specific id and new vals
+        if (err) return res.status(400).json({ error: err.message });
+        res.json({ status: "Record id=" + id + " updated" }); //response of success
+    });
+});
+
+
 
 
 //starting server at port 3000 
 app.listen(3000, () => {
     console.log("RESTful API listening on port 3000");
-    console.log("Accessible at http://localhost:3000/api");
+    console.log("http://localhost:3000/api");
 });
