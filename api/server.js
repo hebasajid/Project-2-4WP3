@@ -13,7 +13,7 @@ const db = new sqlite3.Database('./database.sqlite', (err) => {
 });
 
 
-//GET ROUTE: gets all expenses from the database route: /api
+//GET ROUTE: gets all expenses from the db route: /api
 
 app.get('/api', (req, res) => {
     console.log("GET EXPENSES REQUEST RECEIVED");
@@ -29,6 +29,23 @@ app.get('/api', (req, res) => {
 });
 
 
+//POST ROUTE: adds a new expense to the db route: /api
+app.post('/api', (req, res) => {
+    console.log("POST EXPENSE REQUEST RECEIVED");
+    const { Item_date, Item_amount, Item_name, Item_category } = req.body;  
+    const sql = `INSERT INTO expenses (Item_date, Item_amount, Item_name, Item_category) 
+                 VALUES (?, ?, ?, ?)`;
+    const params = [Item_date, Item_amount, Item_name, Item_category];
+    db.run(sql, params, function (err) {
+        if (err) {
+            res.status(400).json({ "error": err.message });
+            return;
+        }
+        res.json({
+            status: `New record created with $id=${this.lastID}` //ensuring response includes the ID of the newly created record for client reference
+        });
+    });
+});
 
 //starting server at port 3000 
 app.listen(3000, () => {
