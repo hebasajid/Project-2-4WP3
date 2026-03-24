@@ -13,7 +13,7 @@ const db = new sqlite3.Database('./database.sqlite', (err) => {
 });
 
 
-//GET ROUTE: gets all expenses from the db route: /api
+//1. GET ROUTE: gets all expenses from the db route: /api
 
 app.get('/api', (req, res) => {
     console.log("GET EXPENSES REQUEST RECEIVED");
@@ -29,7 +29,7 @@ app.get('/api', (req, res) => {
 });
 
 
-//POST ROUTE: adds a new expense to the db route: /api
+//2. POST ROUTE: adds a new expense to the db route: /api
 app.post('/api', (req, res) => {
     console.log("POST EXPENSE REQUEST RECEIVED");
     const { Item_date, Item_amount, Item_name, Item_category } = req.body;  
@@ -45,7 +45,7 @@ app.post('/api', (req, res) => {
     });
 });
 
-//DELETE ROUTE: deletes ONE expense from the db route based on id: /api/:id
+//3. DELETE ROUTE: deletes ONE expense from the db route based on id: /api/:id
 
 app.delete('/api/:id', (req, res) => {
     console.log("DELETE EXPENSE REQUEST RECEIVED");
@@ -60,6 +60,18 @@ app.delete('/api/:id', (req, res) => {
     });
 });
 
+//DELETE ROUTE: deletes ALL expenses from the db route: /api
+app.delete('/api', (req, res) => {
+    console.log("DELETE ALL EXPENSES REQUEST RECEIVED");
+    const sql = "DELETE FROM expenses";
+    db.run(sql, function (err) {  //executing delete request to remove all records
+        if (err) {
+            res.status(400).json({ "error": err.message });
+            return;
+        }
+        res.json({ status: "All records deleted" });
+    });
+});
 
 
 //starting server at port 3000 
