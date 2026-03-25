@@ -1,0 +1,1 @@
+npx expo start --web to run the application make sure api running in another terminal!
