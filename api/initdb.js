@@ -20,6 +20,6 @@ db.serialize(() => {
   stmt.run("2026-03-05", 15.50, "Movie Ticket", "Entertainment");
   stmt.finalize();
 
-  console.log("Database initialized with seed records.");
+  console.log("Database initialized.");
 });
 db.close();

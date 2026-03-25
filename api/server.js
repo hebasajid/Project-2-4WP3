@@ -102,6 +102,19 @@ app.put('/api/:id', (req, res) => {
     });
 });
 
+//7. PUT ROUTE: updates all expenses in the db route: /api
+app.put('/api', (req, res) => {
+    const items = req.body; //expects array of json objs.
+    db.serialize(() => {
+        db.run("DELETE FROM expenses");
+        const stmt = db.prepare(`INSERT INTO expenses (Item_date, Item_amount, Item_name, Item_category) VALUES (?, ?, ?, ?)`);
+        items.forEach(item => {
+            stmt.run(item.Item_date, item.Item_amount, item.Item_name, item.Item_category); //inserting each item from  array into  db, replacing all existing records
+        });
+        stmt.finalize();
+        res.json({ status: "Collection replaced" });
+    });
+});
 
 
 
