@@ -13,7 +13,7 @@ const db = new sqlite3.Database('./database.sqlite', (err) => {
 });
 
 
-//1. GET ROUTE: gets all expenses from the db route: /api
+//1. GET ROUTE: gets all expenses from the db route: /api - testing completed with Postman, works as expected, returns correct record based on id provided in request params
 
 app.get('/api', (req, res) => {
     console.log("GET EXPENSES REQUEST RECEIVED");
@@ -28,7 +28,7 @@ app.get('/api', (req, res) => {
     });
 });
 
-//2. GET ROUTE: gets ONE expense from the db route based on id: /api/:id
+//2. GET ROUTE: gets ONE expense from the db route based on id: /api/:id - 
 app.get('/api/:id', (req, res) => {
     console.log("GET EXPENSE BY ID REQUEST RECEIVED");
     const { id } = req.params; //getting id of expense from req. params
@@ -44,7 +44,7 @@ app.get('/api/:id', (req, res) => {
 });
 
 
-//3. POST ROUTE: adds a new expense to the db route: /api
+//3. POST ROUTE: adds a new expense to the db route: /api - testing completed with Postman, works as expected, returns correct record based on id provided in request params
 app.post('/api', (req, res) => {
     console.log("POST EXPENSE REQUEST RECEIVED");
     const { Item_date, Item_amount, Item_name, Item_category } = req.body;  
@@ -60,7 +60,7 @@ app.post('/api', (req, res) => {
     });
 });
 
-//4. DELETE ROUTE: deletes ONE expense from the db route based on id: /api/:id
+//4. DELETE ROUTE: deletes ONE expense from the db route based on id: /api/:id - testing completed with Postman, works as expected, returns correct record based on id provided in request params
 
 app.delete('/api/:id', (req, res) => {
     console.log("DELETE EXPENSE REQUEST RECEIVED");
@@ -75,7 +75,7 @@ app.delete('/api/:id', (req, res) => {
     });
 });
 
-//5. DELETE ROUTE: deletes ALL expenses from the db route: /api
+//5. DELETE ROUTE: deletes ALL expenses from the db route: /api - testing completed with Postman, works as expected, returns correct record based on id provided in request params
 app.delete('/api', (req, res) => {
     console.log("DELETE ALL EXPENSES REQUEST RECEIVED");
     const sql = "DELETE FROM expenses";
@@ -89,7 +89,7 @@ app.delete('/api', (req, res) => {
 });
 
 
-//6. PUT ROUTE: updates an existing expense in the db route based on id: /api/:id
+//6. PUT ROUTE: updates an existing expense in the db route based on id: /api/:id - testing completed with Postman, works as expected, returns correct record based on id provided in request params
 app.put('/api/:id', (req, res) => {
     const { id } = req.params;
     const { Item_date, Item_amount, Item_name, Item_category } = req.body; //getting all fields of expense to update them
@@ -102,7 +102,7 @@ app.put('/api/:id', (req, res) => {
     });
 });
 
-//7. PUT ROUTE: updates all expenses in the db route: /api
+//7. PUT ROUTE: updates all expenses in the db route: /api - testing completed with Postman, works as expected, returns correct record based on id provided in request params
 app.put('/api', (req, res) => {
     const items = req.body; //expects array of json objs.
     db.serialize(() => {
