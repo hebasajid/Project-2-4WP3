@@ -31,6 +31,8 @@ export default function App() {
     fetchExpenses(); 
   }, []);
 
+  //POST new expense:
+
   const addExpense = async () => { //function to add expense by sending POST request to api
     if (!date || !amount || !name || !category) {
       Alert.alert("Error", "Please fill all fields");
@@ -56,6 +58,23 @@ export default function App() {
       fetchExpenses(); 
     } catch (error) {
       console.error("Add error:", error);
+    }
+  };
+
+  //DELETE expense by id:
+
+  const deleteExpense = async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/${id}`, { //sending delete request to API endpoint w specific ID
+        method: 'DELETE',
+      });
+      const result = await response.json();
+      console.log(result.status);
+      
+      //refreshing list after deleting
+      fetchExpenses(); 
+    } catch (error) {
+      console.error("Delete error:", error);
     }
   };
 }
