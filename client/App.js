@@ -77,4 +77,21 @@ export default function App() {
       console.error("Delete error:", error);
     }
   };
+
+  
+return (
+    <View style={styles.container}> 
+      <Text style={styles.header}>Expense Tracker</Text>
+      <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={addExpense} />
+      <ExpenseTable data={expenses} onDelete={deleteExpense} />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 20, paddingTop: 60, backgroundColor: '#fff' },
+  header: { fontSize: 22, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' }
+});
+
+
+
