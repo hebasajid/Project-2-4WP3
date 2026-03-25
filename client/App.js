@@ -80,17 +80,17 @@ export default function App() {
 
   
 return (
-    <View style={styles.container}> 
-      <Text style={styles.header}>Expense Tracker</Text>
-      <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={addExpense} />
-      <ExpenseTable data={expenses} onDelete={deleteExpense} />
+    <View style={styles.container}>  //main container view for the app
+      <Text style={styles.header}>Expense Tracker</Text> //header text for the app
+      <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={addExpense} /> //
+      <ExpenseTable data={expenses} onDelete={deleteExpense} /> //rendering form adn tabel components.
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, paddingTop: 60, backgroundColor: '#fff' },
-  header: { fontSize: 22, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' }
+  container: { flex: 1, padding: 20, paddingTop: 60, backgroundColor: '#fff' }, //main container style
+  header: { fontSize: 22, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' } //header text style
 });
 
 
