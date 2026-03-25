@@ -31,5 +31,31 @@ export default function App() {
     fetchExpenses(); 
   }, []);
 
+  const addExpense = async () => { //function to add expense by sending POST request to api
+    if (!date || !amount || !name || !category) {
+      Alert.alert("Error", "Please fill all fields");
+      return;
+    }
 
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }, //
+        body: JSON.stringify({
+          Item_date: date,
+          Item_amount: parseFloat(amount), //turning string into number
+          Item_name: name,
+          Item_category: category
+        }),
+      });
+      const result = await response.json(); //parsing response as json
+      console.log(result.status);
+      
+      //clearing form fields after submission and refreshing list of expns
+      setDate(''); setAmount(''); setName(''); setCategory('');
+      fetchExpenses(); 
+    } catch (error) {
+      console.error("Add error:", error);
+    }
+  };
 }
