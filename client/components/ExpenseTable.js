@@ -28,3 +28,10 @@ export default function ExpenseTable({ data, onDelete }) {
   );
 }
 
+const styles = StyleSheet.create({
+  container: { flex: 1, marginTop: 10 },
+  tableHeader: { flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 5, marginBottom: 10 },
+  row: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#eee', paddingVertical: 10, alignItems: 'center' },
+  cell: { flex: 1, fontSize: 14 },
+  bold: { fontWeight: 'bold' }
+});
