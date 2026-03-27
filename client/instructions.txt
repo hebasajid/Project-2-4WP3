@@ -1,3 +1,3 @@
-npx expo start --web to run the application make sure api running in another terminal!
+npx expo start --web to run the client application make sure api running in another terminal!
 node server.js - starts API in separate terminal.
 both terminals should be running at the same time.

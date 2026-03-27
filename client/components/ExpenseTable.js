@@ -9,17 +9,17 @@ export default function ExpenseTable({ data, onDelete }) {
         <Text style={[styles.cell, styles.bold]}>Name</Text>
         <Text style={[styles.cell, styles.bold]}>Price</Text>
         <Text style={[styles.cell, styles.bold]}>Action</Text>
-      </View> // Table header
+      </View> 
       <FlatList
         data={data}
-        keyExtractor={(item) => item.id.toString()}  // unique key for each item
+        keyExtractor={(item) => item.id.toString()}  
         renderItem={({ item }) => (
           <View style={styles.tableRow}>
-            <Text style={styles.cell}>{item.id}</Text>  // ID cell
+            <Text style={styles.cell}>{item.id}</Text>  
             <Text style={styles.cell}>{item.name}</Text>
             <Text style={styles.cell}>${item.price.toFixed(2)}</Text>
             <TouchableOpacity onPress={() => onDelete(item.id)}>
-            <Text style={{ color: 'red' }}>Delete</Text>  // Delete button
+            <Text style={{ color: 'red' }}>Delete</Text>  
             </TouchableOpacity>
           </View>
         )}

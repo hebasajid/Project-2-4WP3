@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; 
 import { StyleSheet, Text, View, Alert } from 'react-native';
-import ExpenseForm from './components/ExpenseForm'; //importing form and table components to  use in  app component
-import ExpenseTable from './components/ExpenseTable';
+import ExpenseForm from './components/ExpenseForm.js'; //importing form and table components to  use in  app component
+import ExpenseTable from './components/ExpenseTable.js';
 
 export default function App() {
   //input states for the form fields into one object
