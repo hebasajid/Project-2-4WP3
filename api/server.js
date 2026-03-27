@@ -82,9 +82,9 @@ app.delete('/api', (req, res) => {
     db.run(sql, function (err) {  //executing delete request to remove all records
         if (err) {
             res.status(400).json({ "error": err.message });
-            return;
+        } else {
+            res.json({ status: "Collection deleted" });
         }
-        res.json({ status: "Collection deleted" });
     });
 });
 

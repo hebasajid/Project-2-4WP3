@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
-import { StyleSheet, Text, View, Alert } from 'react-native';
+import { StyleSheet, Text, View, Alert, Button } from 'react-native';
 import ExpenseForm from './components/ExpenseForm.js'; //importing form and table components to  use in  app component
 import ExpenseTable from './components/ExpenseTable.js';
 
@@ -84,12 +84,34 @@ export default function App() {
     }
   };
 
+ const deleteAllExpenses = async () => {
+  console.log("DELETE BUTTON CLICKED!");
+  
+  try {
+    // 1. Send the command to the server
+    const response = await fetch(API_URL, { 
+      method: 'DELETE' 
+    }); 
+    
+    // 2. Wait for the server to say "I'm done"
+    const result = await response.json();
+    console.log("Server says:", result.status);
+    
+    // 3. ONLY THEN refresh the UI
+    fetchExpenses(); 
+    
+  } catch (error) {
+    console.error("Network Error:", error);
+  }
+};
   
 return (
     <View style={styles.container}> 
       <Text style={styles.header}>My Personal Expense Tracker</Text> 
       <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={addExpense} /> 
       <ExpenseTable data={expenses} onDelete={deleteExpense} /> 
+      <Button title="Clear all Expenses" color="red" onPress={deleteAllExpenses} />
+     
     </View>
   );
 }
