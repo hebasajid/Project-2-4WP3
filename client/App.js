@@ -87,7 +87,7 @@ export default function App() {
   
 return (
     <View style={styles.container}> 
-      <Text style={styles.header}>Expense Tracker</Text> 
+      <Text style={styles.header}>My Personal Expense Tracker</Text> 
       <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={addExpense} /> 
       <ExpenseTable data={expenses} onDelete={deleteExpense} /> 
     </View>
@@ -95,8 +95,13 @@ return (
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, paddingTop: 60, backgroundColor: '#fff' }, //main container style
-  header: { fontSize: 22, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' } //header text style
+  container: 
+  { flex: 1, 
+    padding: 20,
+    paddingTop: 40,
+    backgroundColor: '#cdf9e7' }, //main container style
+    
+  header: { fontSize: 45, fontWeight: 'bold', marginBottom: 20, textAlign: 'center', color: '#2c3e50' } //header text style
 });
 
 
