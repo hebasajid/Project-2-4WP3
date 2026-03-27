@@ -22,7 +22,7 @@ export default function ExpenseTable({ data, onDelete }) {
         ${item.Item_amount ? Number(item.Item_amount).toFixed(2) : "0.00"}
         </Text>
         <TouchableOpacity onPress={() => onDelete(item.id)}>
-        <Text style={{ color: 'red', textAlign: 'center' }}>Delete</Text>  
+        <Text style={{ color: 'red', textAlign: 'center', paddingRight: 192 }}>Delete</Text>  
         </TouchableOpacity>
         </View>
         )}
@@ -33,8 +33,8 @@ export default function ExpenseTable({ data, onDelete }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, marginTop: 10 },
-  tableHeader: { flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 5, backgroundColor: '#f0f0f0' },
-  row: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#eee', paddingVertical: 10, alignItems: 'center' },
-  cell: { flex: 1, fontSize: 14, textAlign: 'center', paddingHorizontal: 2 },
+  tableHeader: { flexDirection: 'row',backgroundColor: '#7ebdd4', paddingVertical: 12, borderRadius: 8, marginBottom: 10 },
+  row: { flexDirection: 'row', backgroundColor: '#ffffff', paddingVertical: 12, marginVertical: 4, borderRadius: 8, alignItems: 'center', borderLeftColor: '#7ebdd4', borderLeftWidth: 4 },
+  cell: { flex: 1, fontSize: 14, textAlign: 'center', paddingHorizontal: 2, color: '#34495e' },
   bold: { fontWeight: 'bold' }
 });
