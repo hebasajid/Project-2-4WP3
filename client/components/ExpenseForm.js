@@ -14,6 +14,8 @@ export default function ExpenseForm({ inputs, setInputs, onAdd }) {
 }
 
 const styles = StyleSheet.create({
-  formContainer: { marginBottom: 30, padding: 15, backgroundColor: '#f9f9f9', borderRadius: 8 },
-  input: { borderBottomWidth: 1, borderBottomColor: '#ccc', marginBottom: 12, padding: 8 }
+  formContainer: { marginBottom: 30, padding: 20, backgroundColor: '#ffffff', borderRadius: 15,
+    shadowColor: '#000',shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4, elevation: 3},
+  input: { borderBottomWidth: 1, borderBottomColor: '#2c3e50', marginBottom: 15, padding: 10, fontSize: 16 }
 });
+
