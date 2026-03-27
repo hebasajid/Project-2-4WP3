@@ -13,17 +13,18 @@ export default function ExpenseTable({ data, onDelete }) {
       <FlatList
         data={data}
         keyExtractor={(item) => item.id.toString()}  
-        renderItem={({ item }) => (
-          <View style={styles.row}>
-            <Text style={styles.cell}>{item.id}</Text>  
-            <Text style={styles.cell}>{item.Item_name}</Text>
-           <Text style={styles.cell}>
-                 ${item.Item_amount ? Number(item.Item_amount).toFixed(2) : "0.00"}
-           </Text>
-            <TouchableOpacity onPress={() => onDelete(item.id)}>
-            <Text style={{ color: 'red' }}>Delete</Text>  
-            </TouchableOpacity>
-          </View>
+
+    renderItem={({ item }) => (
+    <View style={styles.row}>
+        <Text style={styles.cell}>{item.id}</Text>  
+        <Text style={styles.cell}>{item.Item_name}</Text>
+        <Text style={styles.cell}>
+        ${item.Item_amount ? Number(item.Item_amount).toFixed(2) : "0.00"}
+        </Text>
+        <TouchableOpacity onPress={() => onDelete(item.id)}>
+        <Text style={{ color: 'red', textAlign: 'center' }}>Delete</Text>  
+        </TouchableOpacity>
+        </View>
         )}
       />
     </View>
@@ -32,8 +33,8 @@ export default function ExpenseTable({ data, onDelete }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, marginTop: 10 },
-  tableHeader: { flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 5, marginBottom: 10 },
+  tableHeader: { flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 5, backgroundColor: '#f0f0f0' },
   row: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#eee', paddingVertical: 10, alignItems: 'center' },
-  cell: { flex: 1, fontSize: 14, textAlign: 'center' },
+  cell: { flex: 1, fontSize: 14, textAlign: 'center', paddingHorizontal: 2 },
   bold: { fontWeight: 'bold' }
 });
