@@ -14,9 +14,9 @@ export default function ExpenseTable({ data, onDelete }) {
         data={data}
         keyExtractor={(item) => item.id.toString()}  
         renderItem={({ item }) => (
-          <View style={styles.tableRow}>
+          <View style={styles.row}>
             <Text style={styles.cell}>{item.id}</Text>  
-            <Text style={styles.cell}>{item.name}</Text>
+            <Text style={styles.cell}>{item.Item_name}</Text>
            <Text style={styles.cell}>
                  ${item.Item_amount ? Number(item.Item_amount).toFixed(2) : "0.00"}
            </Text>
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
   container: { flex: 1, marginTop: 10 },
   tableHeader: { flexDirection: 'row', borderBottomWidth: 2, paddingBottom: 5, marginBottom: 10 },
   row: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#eee', paddingVertical: 10, alignItems: 'center' },
-  cell: { flex: 1, fontSize: 14 },
+  cell: { flex: 1, fontSize: 14, textAlign: 'center' },
   bold: { fontWeight: 'bold' }
 });
