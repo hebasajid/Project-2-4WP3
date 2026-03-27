@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  StyleSheet, Text, View, TextInput, Button,  //importing necessary components from react native
-  FlatList, ScrollView, TouchableOpacity, Alert 
-} from 'react-native';
+import React, { useState, useEffect } from 'react'; 
+import { StyleSheet, Text, View, Alert } from 'react-native';
+import ExpenseForm from './components/ExpenseForm'; //importing form and table components to  use in  app component
+import ExpenseTable from './components/ExpenseTable';
 
 export default function App() {
-  //input states for the form fields
-  const [date, setDate] = useState(''); //state for date input field
-  const [amount, setAmount] = useState(''); 
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');  
+  //input states for the form fields into one object
+  const [inputs, setInputs] = useState({
+    date: '',
+    amount: '',
+    name: '',
+    category: ''
+  }); 
 
   //state for storing the list of expenses fetched from  API
   const [expenses, setExpenses] = useState([]);
@@ -34,7 +35,7 @@ export default function App() {
   //POST new expense:
 
   const addExpense = async () => { //function to add expense by sending POST request to api
-    if (!date || !amount || !name || !category) {
+    if (!inputs.date || !inputs.amount || !inputs.name || !inputs.category) {
       Alert.alert("Error", "Please fill all fields");
       return;
     }
@@ -44,17 +45,22 @@ export default function App() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }, //
         body: JSON.stringify({
-          Item_date: date,
-          Item_amount: parseFloat(amount), //turning string into number
-          Item_name: name,
-          Item_category: category
+          Item_date: inputs.date,
+          Item_amount: parseFloat(inputs.amount), //turning string into number
+          Item_name: inputs.name,
+          Item_category: inputs.category
         }),
       });
       const result = await response.json(); //parsing response as json
       console.log(result.status);
       
       //clearing form fields after submission and refreshing list of expns
-      setDate(''); setAmount(''); setName(''); setCategory('');
+      setInputs({
+        date: '',
+        amount: '',
+        name: '',
+        category: ''
+      });
       fetchExpenses(); 
     } catch (error) {
       console.error("Add error:", error);
@@ -80,10 +86,10 @@ export default function App() {
 
   
 return (
-    <View style={styles.container}>  //main container view for the app
-      <Text style={styles.header}>Expense Tracker</Text> //header text for the app
-      <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={addExpense} /> //
-      <ExpenseTable data={expenses} onDelete={deleteExpense} /> //rendering form adn tabel components.
+    <View style={styles.container}> 
+      <Text style={styles.header}>Expense Tracker</Text> 
+      <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={addExpense} /> 
+      <ExpenseTable data={expenses} onDelete={deleteExpense} /> 
     </View>
   );
 }
