@@ -12,3 +12,8 @@ export default function ExpenseForm({ inputs, setInputs, onAdd }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  formContainer: { marginBottom: 30, padding: 15, backgroundColor: '#f9f9f9', borderRadius: 8 },
+  input: { borderBottomWidth: 1, borderBottomColor: '#ccc', marginBottom: 12, padding: 8 }
+});
