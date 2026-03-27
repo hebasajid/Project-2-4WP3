@@ -17,7 +17,9 @@ export default function ExpenseTable({ data, onDelete }) {
           <View style={styles.tableRow}>
             <Text style={styles.cell}>{item.id}</Text>  
             <Text style={styles.cell}>{item.name}</Text>
-            <Text style={styles.cell}>${item.price.toFixed(2)}</Text>
+           <Text style={styles.cell}>
+            ${item.Item_amount ? Number(item.Item_amount).toFixed(2) : "0.00"}
+          </Text>
             <TouchableOpacity onPress={() => onDelete(item.id)}>
             <Text style={{ color: 'red' }}>Delete</Text>  
             </TouchableOpacity>
