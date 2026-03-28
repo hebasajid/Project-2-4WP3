@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 
-export default function ExpenseTable({ data, onDelete }) {
+export default function ExpenseTable({ data, onDelete, onEdit }) {
   return (
     <View style={styles.container}>
       <View style={styles.tableHeader}>
