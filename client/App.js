@@ -37,38 +37,29 @@ export default function App() {
 
   //POST new expense:
 
-  const addExpense = async () => { //function to add expense by sending POST request to api
-    if (!inputs.date || !inputs.amount || !inputs.name || !inputs.category) {
-      Alert.alert("Error", "Please fill all fields");
-      return;
-    }
+ const saveExpense = async () => {
+  const method = editingId ? 'PUT' : 'POST'; //if editingId exists, we are updating to use PUT, otherwise creating post request
+  const url = editingId ? `${API_URL}/${editingId}` : API_URL; 
 
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }, //
-        body: JSON.stringify({
-          Item_date: inputs.date,
-          Item_amount: parseFloat(inputs.amount), //turning string into number
-          Item_name: inputs.name,
-          Item_category: inputs.category
-        }),
-      });
-      const result = await response.json(); //parsing response as json
-      console.log(result.status);
-      
-      //clearing form fields after submission and refreshing list of expns
-      setInputs({
-        date: '',
-        amount: '',
-        name: '',
-        category: ''
-      });
-      fetchExpenses(); 
-    } catch (error) {
-      console.error("Add error:", error);
-    }
-  };
+  try {
+    await fetch(url, {
+      method: method,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        Item_date: inputs.date,
+        Item_amount: parseFloat(inputs.amount), //converting amount to number
+        Item_name: inputs.name,
+        Item_category: inputs.category
+      }),
+    });
+
+    setEditingId(null); //clearing edit mode
+    setInputs({ date: '', amount: '', name: '', category: '' });
+    fetchExpenses(); //refresjing list after adding and updating
+  } catch (error) {
+    console.error("Save error:", error);
+  }
+};
 
   //DELETE expense by id:
 
@@ -131,8 +122,8 @@ const handleEdit = async (id) => {
 return (
     <View style={styles.container}> 
       <Text style={styles.header}>My Personal Expense Tracker</Text> 
-      <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={addExpense} /> 
-      <ExpenseTable data={expenses} onDelete={deleteExpense} /> 
+      <ExpenseForm inputs={inputs} setInputs={setInputs} onAdd={saveExpense} isEditing={!!editingId} /> 
+      <ExpenseTable data={expenses} onDelete={deleteExpense} onEdit={handleEdit} /> 
       <Button title="Clear all Expenses" color="red" onPress={deleteAllExpenses} />
      
     </View>

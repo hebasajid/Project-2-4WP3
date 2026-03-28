@@ -24,6 +24,9 @@ export default function ExpenseTable({ data, onDelete }) {
         <TouchableOpacity onPress={() => onDelete(item.id)}>
         <Text style={{ color: 'red', textAlign: 'center', paddingRight: 192 }}>Delete</Text>  
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => onEdit(item.id)}>
+        <Text style={{ color: 'blue', marginRight: 10 }}>Edit</Text>
+        </TouchableOpacity>
         </View>
         )}
       />
