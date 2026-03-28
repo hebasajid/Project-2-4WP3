@@ -1,3 +1,4 @@
 npx expo start --web to run the client application make sure api running in another terminal!
+this will automatically open the application in the web browser.
 node server.js - starts API in separate terminal.
 both terminals should be running at the same time.

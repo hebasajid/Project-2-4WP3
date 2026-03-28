@@ -15,6 +15,9 @@ export default function App() {
   //state for storing the list of expenses fetched from  API
   const [expenses, setExpenses] = useState([]);
 
+  //state to track editing move and id of expense being edited:
+  const [editingId, setEditingId] = useState(null);
+
   const API_URL = 'http://localhost:3000/api';
 
   //GET all espenses
@@ -102,6 +105,26 @@ export default function App() {
     
   } catch (error) {
     console.error("Network Error:", error);
+  }
+};
+
+//function to handle editing an expense:
+const handleEdit = async (id) => {
+  try {
+    //getting one item's data from API to pre-fill the form for editing:
+    const response = await fetch(`${API_URL}/${id}`);
+    const item = await response.json();
+    
+    //filling form w data of the item
+    setInputs({
+      date: item.Item_date,
+      amount: item.Item_amount.toString(),
+      name: item.Item_name,
+      category: item.Item_category
+    });
+    setEditingId(id); //setting editingID
+  } catch (error) {
+    console.error("Edit load error:", error);
   }
 };
   
