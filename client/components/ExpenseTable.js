@@ -21,13 +21,18 @@ export default function ExpenseTable({ data, onDelete }) {
         <Text style={styles.cell}>
         ${item.Item_amount ? Number(item.Item_amount).toFixed(2) : "0.00"}
         </Text>
-        <TouchableOpacity onPress={() => onDelete(item.id)}>
-        <Text style={{ color: 'red', textAlign: 'center', paddingRight: 192 }}>Delete</Text>  
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => onEdit(item.id)}>
-        <Text style={{ color: 'blue', marginRight: 10 }}>Edit</Text>
-        </TouchableOpacity>
-        </View>
+
+
+       <View style={[styles.cell, {flexDirection: 'row', justifyContent: 'center'}]}>
+    <TouchableOpacity onPress={() => onEdit(item.id)}>
+      <Text style={{ color: '#3498db', marginRight: 15, fontWeight: 'bold' }}>Edit</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => onDelete(item.id)}>
+      <Text style={{ color: '#e74c3c', fontWeight: 'bold' }}>Delete</Text>
+    </TouchableOpacity>
+    </View>
+   </View>
         )}
       />
     </View>
