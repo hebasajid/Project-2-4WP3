@@ -53,8 +53,8 @@ export default function App() {
       }),
     });
 
-    setEditingId(null); //clearing edit mode
-    setInputs({ date: '', amount: '', name: '', category: '' });
+    setEditingId(null); //exiting edit mode after saving
+    setInputs({ date: '', amount: '', name: '', category: '' }); //clearing form
     fetchExpenses(); //refresjing list after adding and updating
   } catch (error) {
     console.error("Save error:", error);

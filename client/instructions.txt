@@ -2,3 +2,15 @@ npx expo start --web to run the client application make sure api running in anot
 this will automatically open the application in the web browser.
 node server.js - starts API in separate terminal.
 both terminals should be running at the same time.
+
+node initdb.js to start the new db.
+
+
+6 routes added:
+
+1. Get All	GET /api	 table loads all expenses when the app starts.	
+2. Post One	POST /api	 form adds a new expense to the list.
+3. Delete One	DELETE /api/:id	the  red "Delete" button in each row.
+4. Delete All	DELETE /api	The "Clear All Expenses" button at the bottom.	
+5. Update One	PUT /api/:id	saving the form while in "Edit Mode."
+6. Get One	GET /api/:id	clicking the edit button fetches that specific item to fill the form.
