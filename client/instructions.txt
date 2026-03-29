@@ -1,13 +1,17 @@
-npx expo start --web to run the client application make sure api running in another terminal!
-this will automatically open the application in the web browser.
+HOW TO RUN THE APPLICATION:
+
+'npm start' to run the client application make sure api running in another terminal!
+use the web link to access the application. 
+
 node server.js - starts API in separate terminal.
 both terminals should be running at the same time.
 
-node initdb.js to start the new db.
+make sure to run npm install to install the dependencies/libraries/pacakges
+in the api folder and 
+client folder as they are separate. - in diff terminals.
 
 
 6 routes added:
-
 1. Get All	GET /api	 table loads all expenses when the app starts.	
 2. Post One	POST /api	 form adds a new expense to the list.
 3. Delete One	DELETE /api/:id	the  red "Delete" button in each row.

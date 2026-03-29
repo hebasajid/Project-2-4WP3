@@ -23,16 +23,16 @@ export default function ExpenseTable({ data, onDelete, onEdit }) {
         </Text>
 
 
-       <View style={[styles.cell, {flexDirection: 'row', justifyContent: 'center'}]}>
-    <TouchableOpacity onPress={() => onEdit(item.id)}>
+      <View style={[styles.cell, {flexDirection: 'row', justifyContent: 'center'}]}>
+      <TouchableOpacity onPress={() => onEdit(item.id)}>
       <Text style={{ color: '#3498db', marginRight: 15, fontWeight: 'bold' }}>Edit</Text>
-    </TouchableOpacity>
+      </TouchableOpacity>
 
-    <TouchableOpacity onPress={() => onDelete(item.id)}>
+      <TouchableOpacity onPress={() => onDelete(item.id)}>
       <Text style={{ color: '#e74c3c', fontWeight: 'bold' }}>Delete</Text>
-    </TouchableOpacity>
-    </View>
-   </View>
+      </TouchableOpacity>
+      </View>
+      </View>
         )}
       />
     </View>

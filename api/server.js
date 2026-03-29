@@ -23,6 +23,7 @@ app.get('/api', (req, res) => {
             console.error(err.message);
             res.status(500).json({ error: err.message });
         } else {
+            console.log("FETCHED FROM DB:", rows);
             res.json(rows); //returning the arrays of expenses as JSON response
         }
     });
